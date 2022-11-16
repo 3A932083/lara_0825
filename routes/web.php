@@ -54,9 +54,19 @@ Route::get('/', function () {
     dd($posts);
     */
 
-    //3-3用where方法查尋id小於10的貼文，並遞減排序
+    /*3-3用where方法查尋id小於10的貼文，並遞減排序
     $posts = Post::where('id','<','10')->orderBy('id','DESC')->get();
     dd($posts);
+    */
+
+    //4-1用update方法更新DB資料
+    $post = Post::find(1);
+    $post->update([
+        'title'=>'updated title',
+        'content'=>'updated content',
+    ]);
+    return 'Updated success.';
+
 });
 
 Route::get('posts',[PostController::class,'index'])->name('posts.index');
