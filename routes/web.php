@@ -37,7 +37,7 @@ Route::get('/', function () {
 
     /*P3 查詢DB資料
      * 3-1用find方法查詢post(只能找1筆)
-    $post = Post::find(1);
+    $post = Post::find(1);//抓出資料
     echo '標題' .$post->title. '<br>';
     echo '內容' .$post->content. '<br>';
     dd($post);
@@ -72,12 +72,25 @@ Route::get('/', function () {
     return 'Updated success.';
     */
 
-    //4-2用save方法更新DB資料
+    /*4-2用save方法更新DB資料
     $post = Post::find(1);
     $post->title="saved title";
     $post->content="saved content";
     $post->save();
     return 'Updated success.';
+    */
+
+    /*P5刪除DB資料
+     *用delete刪除一筆資料
+    $post = Post::find(1);
+    $post->delete();
+    return 'Delete success.';
+    */
+    //用destroy刪除單筆或多筆資料
+    //Post::destroy(2);
+    Post::destroy(5,7,9);
+    return 'Delete success.';
+
 });
 
 Route::get('posts',[PostController::class,'index'])->name('posts.index');
