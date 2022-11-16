@@ -17,12 +17,17 @@ use App\Models\Post;
 
 
 Route::get('/', function () {
-    //return view('post');
-    //return view('welcome');
+    /*return view('post');
+    return view('welcome');
     $post = new Post();
     $post->title="test_title";
     $post->content="test_content";
-    $post->save();
+    $post->save();*/
+
+    Post::create([
+        'title'=>'created title',
+        'content'=>'created content',
+    ]);
     return 'Saved success.';
 });
 
