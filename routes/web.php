@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
+use App\Models\Comment;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,18 +19,15 @@ use App\Models\Post;
 
 Route::get('/', function () {
 
-    //$allPosts = Post::all();
-    //dd($allPosts);多筆
-
-    //$featuredPosts = Post::where('is_feature', 1)->get();
-    //dd($featuredPosts);多筆
-
-    //$fourthPost = Post::find(8);
-    //dd($fourthPost);單筆
-
-    $lastPost =Post::orderBy('id','DESC')->first();
-    dd($lastPost);
-    
+    $post = Post::find(8);
+    echo'標題'.$post->title.'<br>';
+    echo'內容'.$post->content.'<br>';
+    echo'-----------------'.'<br>';
+    $comments = $post->comments;
+    foreach ($comments as $comment){
+        echo'留言'.$comment->content.'<br>';
+        echo'-----------------'.'<br>';
+    }
 });
 
 Route::get('posts',[PostController::class,'index'])->name('posts.index');
