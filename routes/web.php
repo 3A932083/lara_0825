@@ -20,7 +20,8 @@ Route::get('/', function () {
     //return view('post');
     //return view('welcome');
 
-    /*2-1save方式儲存資料
+    /*P2 新增DB資料
+     * 2-1save方式儲存資料
     $post = new Post();
     $post->title="test_title";
     $post->content="test_content";
@@ -34,7 +35,8 @@ Route::get('/', function () {
     return 'Saved success.';
     */
 
-    /*3-1用find方法查詢post(只能找1筆)
+    /*P3 查詢DB資料
+     * 3-1用find方法查詢post(只能找1筆)
     $post = Post::find(1);
     echo '標題' .$post->title. '<br>';
     echo '內容' .$post->content. '<br>';
@@ -59,14 +61,23 @@ Route::get('/', function () {
     dd($posts);
     */
 
-    //4-1用update方法更新DB資料
+
+    /*P4更新DB資料
+     * 4-1用update方法更新DB資料
     $post = Post::find(1);
     $post->update([
         'title'=>'updated title',
         'content'=>'updated content',
     ]);
     return 'Updated success.';
+    */
 
+    //4-2用save方法更新DB資料
+    $post = Post::find(1);
+    $post->title="saved title";
+    $post->content="saved content";
+    $post->save();
+    return 'Updated success.';
 });
 
 Route::get('posts',[PostController::class,'index'])->name('posts.index');
